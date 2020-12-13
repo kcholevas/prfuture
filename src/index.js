@@ -53,14 +53,13 @@ class StatsList extends Component {
     return(
         db.stats.map((stats)=> {
           return(
-          <Card style={{ width: '10rem', display: "inline-block"}}>
-            <Card.Body>
+          <Card  style={{ width: "10rem", display: "inline-block"}} >
+            <Card.Body >
               <Card.Title>{stats.title}</Card.Title>
               <Card.Text>{stats.amount}</Card.Text>
             </Card.Body>
           </Card>
-
-          )}
+        )}
     ))
   }
 }
@@ -75,11 +74,11 @@ class CoursesTable extends Component {
       <Table class="d-flex justify-content-center">
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Bookable</th>
-          <th>Price</th>
-          <th>Date</th>
-          <th>Actions</th>
+          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Title</th>
+          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Bookable</th>
+          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Price</th>
+          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Date</th>
+          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Actions</th>
         </tr>
       </thead>
       
@@ -89,10 +88,10 @@ class CoursesTable extends Component {
         <Table responsive hover>
       <tbody>
         <tr>
-          <th>{courses.title}</th>
-          <th>Bookable</th>
-          <th>{courses.price.normal}</th>
-          <th>{courses.dates.start_date} - {courses.dates.end_date}</th>
+          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.title}</th>
+          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Bookable</th>
+          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.price.normal}</th>
+          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.dates.start_date} - {courses.dates.end_date}</th>
           <th><ButtonToggle color="info">View Details</ButtonToggle>{' '}</th>
         </tr>
       </tbody>
@@ -113,13 +112,20 @@ const IndexStructure = () => {
       <CustomNavbar />
       <Intro />
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
+        <div class="row" style={{ textAlign: "center" }}>
+          <div class="col" style={{ textAlign: "center" }}>
             <StatsList />
           </div>
         </div>
+        <div class="container-fluid">
+          <div class="row" style={{ justifyContent: "center", textAlign: "center" }}>
+            <div class="col-12" style={{ textAlign: "left" }}>
+            <CoursesTable />
+            </div>
+          </div>
+        </div>
         <hr></hr>
-        <CoursesTable />
+        
         </div>
     </React.Fragment>
   );
