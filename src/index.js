@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import db from "./db";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
@@ -53,9 +53,9 @@ class StatsList extends Component {
     return(
         db.stats.map((stats)=> {
           return(
-          <Card  style={{ width: "10rem", display: "inline-block"}} >
+          <Card  style={{ width: "15rem", display: "inline-block"}} >
             <Card.Body >
-              <Card.Title>{stats.title}</Card.Title>
+              <Card.Title>{stats.title.toUpperCase()}</Card.Title>
               <Card.Text>{stats.amount}</Card.Text>
             </Card.Body>
           </Card>
