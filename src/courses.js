@@ -1,0 +1,55 @@
+import React, { useState, useEffect, Component } from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import db from "./db.json";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Button from "react-bootstrap/Button";
+
+import Card from "react-bootstrap/Card";
+import { Jumbotron, Table, ButtonToggle } from 'reactstrap';
+
+function Courses(){
+
+    useEffect(() => {
+
+        fetchItems();
+
+    },[]);
+
+    const [items,setItems] = useState([])
+
+    const fetchItems = async () => {
+        const data = await fetch('db.courses');
+        console.log(db.courses);
+        setItems(db.courses);
+    }
+    return (
+        <div>
+            {db.courses.map(courses => (
+                <h1 key={courses.id}>
+                <Link to={`/courses/${courses.id}`} >{courses.title}</Link>  
+                </h1>
+
+            ))}
+        </div>
+
+    );
+}
+
+/*const Course = () => {
+    return (
+      db.courses.map((courses)=> {
+        return(
+        <Card key={courses.id} style={{ width: "10rem", display: "inline-block"}} >
+          <Card.Body >
+            <Card.Title>{courses.id}</Card.Title>
+            
+          </Card.Body>
+        </Card>
+      )}
+    )
+
+    );
+  };
+ */ 
+export default Courses;
