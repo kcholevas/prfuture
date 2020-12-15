@@ -1,35 +1,21 @@
 import React, { useState, useEffect, Component } from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import db from "./db";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Courses from './courses';
+import Course from './onlycourse';
+import db from "./db.json";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 import Card from "react-bootstrap/Card";
 import { Jumbotron, Table, ButtonToggle } from 'reactstrap';
+import CustomNavbar from './navbar';
+
 /* Import all pages */
 /*
 import 
 
 */
 
-
-
-// Navbar
-// ========================================
-
-const CustomNavbar = () => {
-  return (
-    <Navbar bg="dark" variant="dark">
-      <Navbar.Brand href="/">Code.Hub Dashboard</Navbar.Brand>
-      <Nav className="ml-auto">
-        <Nav.Link href="/courses">Courses</Nav.Link>
-        <Nav.Link href="/addnewcourse">Add New Course</Nav.Link>
-      </Nav>
-    </Navbar>
-  );
-};
 
 // Intro
 // ========================================
@@ -53,9 +39,9 @@ class StatsList extends Component {
     return(
         db.stats.map((stats)=> {
           return(
-          <Card  style={{ width: "15rem", display: "inline-block"}} >
+          <Card key={stats.id} style={{ width: "10rem", display: "inline-block"}} >
             <Card.Body >
-              <Card.Title>{stats.title.toUpperCase()}</Card.Title>
+              <Card.Title>{stats.title}</Card.Title>
               <Card.Text>{stats.amount}</Card.Text>
             </Card.Body>
           </Card>
@@ -71,7 +57,7 @@ class CoursesTable extends Component {
   render() {
     return (
       <div>Last 5 courses<ButtonToggle className="float-right" color="primary">View All</ButtonToggle>{' '}
-      <Table class="d-flex justify-content-center">
+      <Table class ="d-flex justify-content-center">
       <thead>
         <tr>
           <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Title</th>
@@ -84,7 +70,7 @@ class CoursesTable extends Component {
       
       </Table>
       {db.courses.map((courses)=> {
-        return <div>
+        return <div key={courses.id}>
         <Table responsive hover>
       <tbody>
         <tr>
@@ -108,6 +94,7 @@ class CoursesTable extends Component {
 
 const IndexStructure = () => {
   return (
+    <Router>
     <React.Fragment>
       <CustomNavbar />
       <Intro />
@@ -125,9 +112,13 @@ const IndexStructure = () => {
           </div>
         </div>
         <hr></hr>
-        
+        <Switch>
+        <Route path="/courses" exact component={Courses} />
+        <Route path="/courses/:id" component={Course} />
+        </Switch>
         </div>
     </React.Fragment>
+    </Router>
   );
 };
 
