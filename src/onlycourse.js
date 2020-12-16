@@ -104,11 +104,13 @@ const [item,setItem] = useState([])
         <Button variant="primary" onClick={handleShow}>Edit</Button>{" "}
         <Button variant="danger">Delete</Button>{" "}
 
-        <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal show={show} onHide={handleClose} backdrop="static" animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>{`Edit Course: ${course.title}`}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
