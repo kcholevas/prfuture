@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
 import ReactDOM from "react-dom";
-
 import { Route, useParams } from "react-router-dom";
 import { Jumbotron } from "reactstrap";
 import db from "./db";
@@ -13,7 +12,8 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import {API} from './api';
+import Modal from 'react-bootstrap/Modal'
+
 const Course = ({match}) => {
   
   const checkBookable = (props) => {
@@ -23,28 +23,26 @@ const Course = ({match}) => {
       return;
     }
   };
-//tsevdos code
-  const [course1, setCourse] = useState({});
-  const { id } = useParams();
 
   useEffect(() => {
+
+    fetchItem();
+    console.log(match.params.id);
+    var id= match.params.id; 
+    console.log(id);
+
+  },[]);
+
+const [item,setItem] = useState([])
+  const fetchItem = async () => {
+    const data = await fetch(`/courses/${match.params.id}`);
+    console.log(data);
     
-    const fetchSingleCourse = async (id) => {
-      const res = await fetch(`http://localhost:3001/courses/${match.params.id}`)
-      const course1 = await res.json(); //pairnei to object sto course1
-      console.log(course1); 
-      setCourse(course1);
-    };
-    
-    fetchSingleCourse();
-    }, []);
-  
-    console.log(course1); 
-    let num = parseInt(course1.id); 
-    console.log(num);
-  
-    
+    setItem(data);
+}
+
   const course = db.courses[1];
+  
 
   const instructors = db.instructors.filter((instructor) =>
     course.instructors.includes(instructor.id)
@@ -54,14 +52,19 @@ const Course = ({match}) => {
     return new Date(date).toLocaleDateString("en-US");
   };
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <div>
       <Jumbotron fluid className="Jumbotron">
         <Container fluid>
           <h1 className="display-4">
             <b>
-              {course1.title}
-              {` (${course1.id})`}
+              {course.title}
+              {` (${course.id})`}
             </b>
           </h1>
           <div className="img-container">
@@ -98,8 +101,26 @@ const Course = ({match}) => {
       </div>
 
       <div className="buttons">
-        <Button variant="primary">Edit</Button>{" "}
+        <Button variant="primary" onClick={handleShow}>Edit</Button>{" "}
         <Button variant="danger">Delete</Button>{" "}
+
+        <Modal show={show} onHide={handleClose} backdrop="static" animation={false}>
+        <Modal.Header closeButton>
+          <Modal.Title>{`Edit Course: ${course.title}`}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      
       </div>
 
       <div>
