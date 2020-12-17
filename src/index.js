@@ -26,12 +26,6 @@ const IndexStructure = () => {
     <React.Fragment>
       <CustomNavbar />
       <div class="container-fluid">
-        <div class="row" style={{ textAlign: "center" }}>
-          <div class="col" style={{ textAlign: "center" }}>
-            <Dashboard />
-          </div>
-        </div>
-        <hr></hr>
         <Switch>
         <Route path="/" exact component={Dashboard} />
         <Route path="/courses" exact component={Courses} />
