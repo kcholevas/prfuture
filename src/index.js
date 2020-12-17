@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Jumbotron, Table, ButtonToggle } from 'reactstrap';
 import CustomNavbar from './navbar';
-import {API} from './api';
+
 /* Import all pages */
 /*
 import 
@@ -75,7 +75,7 @@ class CoursesTable extends Component {
       <tbody>
         <tr>
           <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.title}</th>
-          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Bookable</th>
+          <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}><img src={process.env.PUBLIC_URL + '/check.png'} style={{ width: "10%", justifyContent: "center"}} /> </th>
           <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.price.normal}</th>
           <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.dates.start_date} - {courses.dates.end_date}</th>
           <th><ButtonToggle color="info">View Details</ButtonToggle>{' '}</th>
