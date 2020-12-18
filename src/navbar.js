@@ -1,8 +1,7 @@
-import React, { useState, useEffect, Component } from "react";
+import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Modal from 'react-bootstrap/Modal'
-import Button from "react-bootstrap/Button";
+
 
 
 const CustomNavbar = () => {
