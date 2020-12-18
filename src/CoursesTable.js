@@ -23,7 +23,7 @@ function CoursesTable(){
         setItems(courses);
     }
     return (
-        <div>Last 5 courses<Button className="float-right" color="primary">View All</Button>{' '}
+        <div>Last 5 courses<Button className="float-right" color="primary" onClick={event =>  window.location.href='/courses'}>View All</Button>{' '}
             <Table class ="d-flex justify-content-center">
             <thead>
             <tr>
@@ -45,7 +45,7 @@ function CoursesTable(){
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Bookable</th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.price.normal}</th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.dates.start_date} {courses.dates.end_date}</th>
-                <th><Button color="info">View Details</Button>{' '}</th>
+                <th><Button color="info" onClick={event =>  window.location.href=(`/courses/${courses.id}`)}>View Details</Button>{' '}</th>
             </tr>
             </tbody>
         </Table>
