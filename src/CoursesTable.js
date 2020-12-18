@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 //den xreiazetai pleon to db.json 
-import { Table, ButtonToggle } from 'reactstrap';
+import { Table, Button} from 'reactstrap';
 
 // Table of courses
 // ========================================
@@ -23,7 +23,7 @@ function CoursesTable(){
         setItems(courses);
     }
     return (
-        <div>Last 5 courses<ButtonToggle className="float-right" color="primary">View All</ButtonToggle>{' '}
+        <div>Last 5 courses<Button className="float-right" color="primary">View All</Button>{' '}
             <Table class ="d-flex justify-content-center">
             <thead>
             <tr>
@@ -45,7 +45,7 @@ function CoursesTable(){
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Bookable</th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.price.normal}</th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.dates.start_date} {courses.dates.end_date}</th>
-                <th><ButtonToggle color="info">View Details</ButtonToggle>{' '}</th>
+                <th><Button color="info">View Details</Button>{' '}</th>
             </tr>
             </tbody>
         </Table>
