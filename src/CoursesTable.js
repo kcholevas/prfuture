@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-//den xreiazetai pleon to db.json
+//den xreiazetai pleon to db.json 
 import { Table, ButtonToggle } from 'reactstrap';
-
 
 // Table of courses
 // ========================================
@@ -43,9 +42,9 @@ function CoursesTable(){
             <tbody>
             <tr>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.title}</th>
-                <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Bookable</th>
+                <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>check</th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.price.normal}</th>
-                <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.dates.start_date}{courses.dates.end_date}</th>
+                <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.dates.start_date} {courses.dates.end_date}</th>
                 <th><ButtonToggle color="info">View Details</ButtonToggle>{' '}</th>
             </tr>
             </tbody>
