@@ -50,10 +50,13 @@ const [item,setItem] = useState([])
     return new Date(date).toLocaleDateString("en-US");
   };
 
-  const [show, setShow] = useState(false);
+  const [showEd, setShowEd] = useState(false);
+  const [showDel, setShowDel] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleCloseEdit = () => setShowEd(false);
+  const handleShowEdit = () => setShowEd(true);
+  const handleCloseDel = () => setShowDel(false);
+  const handleShowDel = () => setShowDel(true);
 
   return (
     <div>
@@ -99,10 +102,10 @@ const [item,setItem] = useState([])
       </div>
 
       <div className="buttons">
-        <Button variant="primary" onClick={handleShow}>Edit</Button>{" "}
-        <Button variant="danger">Delete</Button>{" "}
+        <Button variant="primary" onClick={handleShowEdit}>Edit</Button>{" "}
+        <Button variant="danger" onClick={handleShowDel}>Delete</Button>{" "}
 
-        <Modal show={show} onHide={handleClose} backdrop="static" animation={false}>
+        <Modal id="editModal" show={showEd} onHide={handleCloseEdit} backdrop="static" animation={true}>
         <Modal.Header closeButton>
           <Modal.Title>{`Edit Course: ${course.title}`}</Modal.Title>
         </Modal.Header>
@@ -110,11 +113,28 @@ const [item,setItem] = useState([])
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleCloseEdit}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleCloseEdit}>
             Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal id="deleteModal" show={showDel} onHide={handleCloseDel} backdrop="static" animation={true}>
+        <Modal.Header closeButton>
+          <Modal.Title>{`Delete Course: ${course.title}`}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+              <p>Are you sure you want to delete course {course.title} and all of its components?</p>  
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDel}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={handleCloseDel}>
+            Delete
           </Button>
         </Modal.Footer>
       </Modal>
