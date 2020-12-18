@@ -42,7 +42,7 @@ function CoursesTable(){
             <tbody>
             <tr>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.title}</th>
-                <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>check</th>
+                <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Bookable</th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.price.normal}</th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.dates.start_date} {courses.dates.end_date}</th>
                 <th><ButtonToggle color="info">View Details</ButtonToggle>{' '}</th>
