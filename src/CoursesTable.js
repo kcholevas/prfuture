@@ -1,12 +1,8 @@
-import React, { useState, useEffect, Component } from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 //den xreiazetai pleon to db.json
-import Card from "react-bootstrap/Card";
-import { Jumbotron, Table, ButtonToggle } from 'reactstrap';
-import {API} from './api';
+import { Table, ButtonToggle } from 'reactstrap';
+
 
 // Table of courses
 // ========================================
