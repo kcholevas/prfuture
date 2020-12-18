@@ -1,15 +1,9 @@
 import React, { useState, useEffect, Component } from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Courses from './courses';
-import Course from './onlycourse';
 import CoursesTable from './CoursesTable';
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Jumbotron, Table, ButtonToggle } from 'reactstrap';
-import CustomNavbar from './navbar';
-import {API} from './api';
+import { Jumbotron } from 'reactstrap';
+
 
 
 function Dashboard(){
