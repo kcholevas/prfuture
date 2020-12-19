@@ -113,6 +113,10 @@ const Course = ({match}) => {
           <Modal.Title>{`Edit Course: ${course1.title}`}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <Jumbotron className="editform"> 
+          
+        </Jumbotron>
+
 
         </Modal.Body>
         <Modal.Footer>
