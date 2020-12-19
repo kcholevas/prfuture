@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import { Route, useParams } from "react-router-dom";
 import { Jumbotron } from "reactstrap";
 import db from "./db";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,29 +16,31 @@ import Modal from 'react-bootstrap/Modal'
 const Course = ({match}) => {
   
   const checkBookable = (props) => {
-    if (props.open) {
+    if (course1.open) {
       return;
     } else {
       return;
     }
   };
 
+  const [course1, setCourse] = useState({});
+  const { id } = useParams();
+
   useEffect(() => {
-
-    fetchItem();
-    console.log(match.params.id);
-    var id= match.params.id; 
-    console.log(id);
-
-  },[]);
-
-const [item,setItem] = useState([])
-  const fetchItem = async () => {
-    const data = await fetch(`/courses/${match.params.id}`);
-    console.log(data);
     
-    setItem(data);
-}
+    const fetchSingleCourse = async (id) => {
+      const res = await fetch(`http://localhost:3001/courses/${match.params.id}`)
+      const course1 = await res.json(); //pairnei to object sto course1
+      console.log(course1); 
+      setCourse(course1);
+    };
+    
+    fetchSingleCourse();
+    }, []);
+  
+    console.log(course1); 
+    let num = parseInt(course1.id); 
+    console.log(num);
 
   const course = db.courses[1];
   
@@ -64,12 +67,12 @@ const [item,setItem] = useState([])
         <Container fluid>
           <h1 className="display-4">
             <b>
-              {course.title}
-              {` (${course.id})`}
+              {course1.title}
+              {` (${course1.id})`}
             </b>
           </h1>
           <div className="img-container">
-            <Image src={course.imagePath} className="courseImage" />
+            <Image src={course1.imagePath} className="courseImage" />
           </div>
         </Container>
       </Jumbotron>
@@ -80,25 +83,25 @@ const [item,setItem] = useState([])
             <h3 className="left">{`Price: ${course.price.normal}€`}</h3>
           </Col>
           <Col>
-            <h3 className="right">{`Duration: ${course.duration}`}</h3>
+            <h3 className="right">{`Duration: ${course1.duration}`}</h3>
           </Col>
         </Row>
         <Row>
           <Col>
             <h3 className="left">{`Bookable: ${checkBookable(
-              course.open
+              course1.open
             )}`}</h3>
           </Col>
           <Col>
             <h3 className="right">{`Dates: ${DateFormatter(
-              course.dates.start_date
-            )} - ${DateFormatter(course.dates.end_date)}`}</h3>
+              course1.dates
+            )} - ${DateFormatter(course1.dates)}`}</h3>
           </Col>
         </Row>
       </Container>
 
       <div className="courseDescription">
-        <p className="courseInfo">{course.description}</p>
+        <p className="courseInfo">{course1.description}</p>
       </div>
 
       <div className="buttons">
@@ -107,7 +110,7 @@ const [item,setItem] = useState([])
 
         <Modal id="editModal" show={showEd} onHide={handleCloseEdit} backdrop="static" animation={true}>
         <Modal.Header closeButton>
-          <Modal.Title>{`Edit Course: ${course.title}`}</Modal.Title>
+          <Modal.Title>{`Edit Course: ${course1.title}`}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
 
@@ -124,10 +127,10 @@ const [item,setItem] = useState([])
 
       <Modal id="deleteModal" show={showDel} onHide={handleCloseDel} backdrop="static" animation={true}>
         <Modal.Header closeButton>
-          <Modal.Title>{`Delete Course: ${course.title}`}</Modal.Title>
+          <Modal.Title>{`Delete Course: ${course1.title}`}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-              <p>Are you sure you want to delete course {course.title} and all of its components?</p>  
+              <p>Are you sure you want to delete course {course1.title} and all of its components?</p>  
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseDel}>
