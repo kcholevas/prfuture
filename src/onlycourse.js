@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-import { Route, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import { Jumbotron } from "reactstrap";
 import db from "./db";
 import "bootstrap/dist/css/bootstrap.min.css";
