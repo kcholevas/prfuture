@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 //den xreiazetai pleon to db.json 
 import { Table, Button} from 'reactstrap';
+import "./index.css";
+
 
 // Table of courses
 // ========================================
@@ -42,7 +44,7 @@ function CoursesTable(){
             <tbody>
             <tr>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.title}</th>
-                <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Bookable</th>
+                <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}><img className="photo" src={process.env.PUBLIC_URL + '/check.png'} alt="Bookable"/></th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.price.normal}</th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.dates.start_date} {courses.dates.end_date}</th>
                 <th><Button color="info" onClick={event =>  window.location.href=(`/courses/${courses.id}`)}>View Details</Button>{' '}</th>
