@@ -3,6 +3,8 @@ import CoursesTable from './CoursesTable';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 import { Jumbotron } from 'reactstrap';
+import "./index.css";
+
 
 
 
