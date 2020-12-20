@@ -1,12 +1,11 @@
-import React, { useState, useEffect, Component } from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import React, { useState, useEffect} from "react";
+import { Link } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 //den xreiazetai pleon to db.json
 import Card from "react-bootstrap/Card";
-import { Jumbotron, Table, ButtonToggle } from 'reactstrap';
-import {API} from './api';
+import Row from 'react-bootstrap/Row';
+
 
 function Courses(){
 
@@ -29,6 +28,7 @@ function Courses(){
         <div>
         <br></br>
         <h1>All Courses</h1>
+        <Row>
             {courses.map(courses => (
                 <h1 key={courses.id}>
                 <Link to={`/courses/${courses.id}`} >
@@ -48,6 +48,7 @@ function Courses(){
                 </h1>
 
             ))}
+            </Row>
         </div>
 
     );
