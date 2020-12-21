@@ -29,6 +29,10 @@ function Courses() {
     fetchData();
   }, []);
 
+  const DateFormatter = (date) => {
+    return new Date(date).toLocaleDateString("en-US");
+  };
+  
   if (error) {
     return <Alert variant="warning">{error.message}</Alert>;
   }
@@ -54,7 +58,7 @@ function Courses() {
                       <br></br>   
                       Price: <b>{courses.price.normal} € </b><br></br><br></br>                   
                       Duration: <b>{courses.duration}</b><br></br><br></br>   
-                      Dates: <b>{courses.dates.start_date} - {courses.dates.end_date}</b><br></br>   
+                      Dates: <b>Dates: {`${DateFormatter(courses.dates.start_date)} - ${DateFormatter(courses.dates.end_date)}`}</b><br></br>   
                       </Card.Text>
                       <Button color="info" onClick={event =>  window.location.href=(`/courses/${courses.id}`)}>View Details</Button>{' '}
                     </Card.Body>
