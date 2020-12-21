@@ -53,20 +53,20 @@ function Dashboard() {
 
   // Stats
   // ========================================
-  const StatsList = () => {
-    return data
-      ? stats.map((stats) => {
-          <Card
-            key={stats.id}
-            style={{ width: "12rem", display: "inline-block" }}
-          >
-            <Card.Body>
-              <Card.Title>{stats.title.toUpperCase()}</Card.Title>
-              <Card.Text>{stats.amount}</Card.Text>
-            </Card.Body>
-          </Card>;
-        })
-      : "Loading";
+    const StatsList = () => {
+    return stats.map((stats) => {
+      return (
+        <Card
+          key={stats.id}
+          style={{ width: "10rem", display: "inline-block" }}
+        >
+          <Card.Body>
+            <Card.Title>{stats.title}</Card.Title>
+            <Card.Text>{stats.amount}</Card.Text>
+          </Card.Body>
+        </Card>
+      );
+    });
   };
 
   return (
