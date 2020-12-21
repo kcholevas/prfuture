@@ -56,31 +56,46 @@ const Course = ({ match }) => {
 
   const [showEd, setShowEd] = useState(false);
   const [showDel, setShowDel] = useState(false);
-
   const handleCloseEdit = () => setShowEd(false);
   const handleShowEdit = () => setShowEd(true);
   const handleCloseDel = () => setShowDel(false);
   const handleShowDel = () => setShowDel(true);
 
-  /* on Save Button Click*/  
-  const handleSaveChanges = () => {};
-  const handleDeleteCourse = () => {};
-
-  
-  const handleEditBook = () => {};
-  const handleEditInstr = () => {};
-  const handleEdit = () => {};
-  
-  const handleEditDate = () => {};
-  const handleEditPrice = () => {};
-
-  /* On Form Submit */
-  const handleCourseEdit = () => {};
+  /* on Save Button Click*/
+  const handleSaveChanges = () => {
 
 
-  
+  };
+  const handleDeleteCourse = () => {
 
-  return (
+  };
+
+
+  const handleEditBook = () => {
+
+  };
+  const handleEditInstr = () => {
+
+  };
+  const [courseEdit, setCourseEdit] = useState([]);
+  const handleEdit = () => {
+    setCourseEdit([...courseEdit,])
+  }
+
+
+  const handleEditDate = () => {
+
+  };
+  const handleEditPrice = () => {
+
+  };
+
+
+
+
+
+
+  return course1.dates ? (
     <div>
       <Jumbotron fluid className="Jumbotron">
         <Container fluid>
@@ -113,8 +128,8 @@ const Course = ({ match }) => {
           </Col>
           <Col>
             <h3 className="right">{`Dates: ${DateFormatter(
-              course1.dates
-            )} - ${DateFormatter(course1.dates)}`}</h3>
+              course1.dates.start_date
+            )} - ${DateFormatter(course1.dates.end_date)}`}</h3>
           </Col>
         </Row>
       </Container>
@@ -133,10 +148,10 @@ const Course = ({ match }) => {
           </Modal.Header>
           <Modal.Body>
             <Jumbotron className="editform">
-              <Form onSubmit={handleCourseEdit}>
+              <Form>
                 <Form.Group onChange={handleEdit} controlId="formCourseTitle">
                   <Form.Label>Title</Form.Label>
-                  <Form.Control placeholder={course1.title}/>
+                  <Form.Control placeholder={course1.title} />
                 </Form.Group>
 
                 <Form.Group onChange={handleEdit} controlId="formCourseDuration">
@@ -149,13 +164,13 @@ const Course = ({ match }) => {
                   <Form.Control placeholder={course1.imagePath} />
                 </Form.Group>
 
-                <Form.Check type={`checkbox`} id={`bookable`} label={`Bookable`} onChange={handleEditBook} checked={course1.open} />
+                <Form.Check type={`checkbox`} id={`bookable`} label={`Bookable`} onChange={handleEditBook} />
 
                 <hr className="my-2" />
                 <h2>Instructors</h2>
+                <Form.Check type="checkbox" label="John Tsevdos" name="01" value="01" onChange={handleEditInstr} />
+                <Form.Check type="checkbox" label="Yannis Nikolakopoulos" name="02" value="02" onChange={handleEditInstr} />
 
-{/*                 <Form.Check type="checkbox" label="John Tsevdos" name="01" value="01" onChange={handleEditInstr} checked= {course1.instructors.includes("01")} />
-                <Form.Check type="checkbox" label="Yannis Nikolakopoulos" name="02" value="02" onChange={handleEditInstr} checked={course1.instructors.includes("02")}/> */}
 
                 <hr className="my-2" />
 
@@ -168,24 +183,24 @@ const Course = ({ match }) => {
                 <h2>Dates</h2>
                 <Form.Group onChange={handleEditDate} controlId="formCourseStartDate">
                   <Form.Label>Start date</Form.Label>
-                  <Form.Control placeholder={course1.dates} type="date"/>
+                  <Form.Control placeholder={course1.dates.start_date}/>
                 </Form.Group>
 
                 <Form.Group onChange={handleEditDate} controlId="formCourseEndDate">
                   <Form.Label>End date</Form.Label>
-                  <Form.Control type="date" placeholder="End date" />
+                  <Form.Control placeholder={course1.dates.end_date}/>
                 </Form.Group>
 
                 <hr className="my-2" />
                 <h2>Price</h2>
                 <Form.Group onChange={handleEditPrice} controlId="formCourseEarlyBird">
                   <Form.Label>Early Bird</Form.Label>
-                  <Form.Control type="number" value={0} />
+                  <Form.Control type="number" value={course1.price.normal} />
                 </Form.Group>
 
                 <Form.Group onChange={handleEditPrice} controlId="formCourseNormalPrice">
                   <Form.Label>Normal Price</Form.Label>
-                  <Form.Control type="number" value={0} />
+                  <Form.Control type="number" value={course1.price.early_bird} />
                 </Form.Group>
 
               </Form>
@@ -230,7 +245,7 @@ const Course = ({ match }) => {
           )}
       </div>
     </div>
-  );
+  ) : ("Waiting for server to fetch the courses...");
 };
 
 export default Course;
