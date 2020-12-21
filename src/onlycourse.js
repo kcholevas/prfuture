@@ -17,14 +17,14 @@ import "./index.css";
 import Instructor from "./Instructor";
 import axios from "axios";
 import DeleteCourse from "./DeleteCourse";
-//import Spinner1 from "./Spinner"
 import { API } from "./api";
-import { render } from "@testing-library/react";
+import EditModal from "./EditModal.js";
 
 const Course = ({ match }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [course, setCourse] = useState({});
   const [data, SetData] = useState(false);
 
@@ -68,15 +68,22 @@ const Course = ({ match }) => {
     return new Date(date).toLocaleDateString("en-US");
   };
 
-  const toggleModal = () => {
-    setShowModal((showModal) => !showModal);
+  const toggleDeleteModal = () => {
+    setShowDeleteModal((showDeleteModal) => !showDeleteModal);
   };
 
-  const deleteCourse = (id) => {
-    axios.delete(`${API}/courses/${id}`).then((res) => {
-      toggleModal();
+  const toggleEditModal = () => {
+    setShowEditModal((showEditModal) => !showEditModal);
+  };
+
+  const deleteCourse = async (id) => {
+    try {
+      await axios.delete(`${API}/courses/${id}`);
+      toggleDeleteModal();
       window.location.href = `/courses`;
-    });
+    } catch (err) {
+      setError(error);
+    }
   };
 
   return data ? (
@@ -104,7 +111,9 @@ const Course = ({ match }) => {
         </Row>
         <Row>
           <Col>
-            <h3 className="left">Bookable: {checkBookable(course.open)}</h3>
+            <h3 className="left">{`Bookable: ${checkBookable(
+              course.open
+            )}`}</h3>
           </Col>
           <Col>
             <h3 className="right">{`Dates: ${DateFormatter(
@@ -121,14 +130,20 @@ const Course = ({ match }) => {
 
         <Row className="buttons">
           <Col>
-            <Button variant="primary">Edit</Button>
-            <Button variant="danger" onClick={toggleModal}>
+            <Button variant="primary" onClick={toggleEditModal}>Edit</Button>
+            <EditModal
+              showModal={showEditModal}
+              toggleModal={toggleEditModal}
+              course={course}
+            />
+
+            <Button variant="danger" onClick={toggleDeleteModal}>
               Delete
             </Button>
             <DeleteCourse
-              showModal={showModal}
-              toggleModal={toggleModal}
-              deleteContact={deleteCourse}
+              showModal={showDeleteModal}
+              toggleModal={toggleDeleteModal}
+              deleteCourse={deleteCourse}
               courseTitle={course.title}
               courseId={course.id}
             />
