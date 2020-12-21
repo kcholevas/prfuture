@@ -44,30 +44,22 @@ function Courses() {
       <Row>
         {courses.map((courses) => (
           <h1 key={courses.id}>
-            <Link to={`/courses/${courses.id}`}>
-              <Card style={{ width: "18rem", display: "inline-block" }}>
-                <Card.Img variant="top" src={courses.imagePath} />
-                <Card.Body>
-                  <Card.Title>{courses.title}</Card.Title>
-                  <Card.Text>
-                    <h4>Price: {courses.price.normal} €</h4>
-                    <h4>Duration: {courses.duration}</h4>
-                    <h5>
-                      Dates: {courses.dates.start_date} -{" "}
-                      {courses.dates.end_date}{" "}
-                    </h5>
-                  </Card.Text>
-                  <Button
-                    color="info"
-                    onClick={(event) =>
-                      (window.location.href = `/courses/${courses.id}`)
-                    }
-                  >
-                    View Details
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Link>
+            
+               <Col>
+                  <Card style={{ width: '20rem', display: "inline-block" }}>
+                    <Card.Body style={{fontSize: 20}}>
+                      <Card.Title>{courses.title}</Card.Title>
+                      <Card.Img variant="top" src={courses.imagePath} />
+                      <Card.Text>
+                      Price: <b>{courses.price.normal} € </b><br></br>                    
+                      Duration: <b>{courses.duration}</b><br></br> 
+                      Dates: <b>{courses.dates.start_date} - {courses.dates.end_date}</b><br></br> 
+                      </Card.Text>
+                      <Button color="info" onClick={event =>  window.location.href=(`/courses/${courses.id}`)}>View Details</Button>{' '}
+                    </Card.Body>
+                  </Card>
+                </Col> 
+  
           </h1>
         ))}
       </Row>
