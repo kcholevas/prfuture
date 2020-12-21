@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Alert, Spinner, Card, Row } from "react-bootstrap";
+import { Button, Alert, Spinner, Card, Row, Col } from "react-bootstrap";
 import { API } from "./api";
 import axios from "axios";
 
