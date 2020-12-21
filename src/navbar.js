@@ -1,29 +1,19 @@
 import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
-
+import { Navbar, Nav } from "react-bootstrap";
 
 
 const CustomNavbar = () => {
-
-
-
-    return (
-
-    
+  return (
 
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="/">Code.Hub Dashboard</Navbar.Brand>
         <Nav className="ml-auto">
           <Nav.Link href="/courses">Courses</Nav.Link>
-          <Nav.Link href="/addnewcourse">Add New Course</Nav.Link>
+          <Nav.Link href="/AddNewCourse">Add New Course</Nav.Link>
         </Nav>
       </Navbar>
+   
+  );
+};
 
-      
-    );
-  };
-
-
-  
 export default CustomNavbar;
