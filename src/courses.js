@@ -46,14 +46,15 @@ function Courses() {
           <h1 key={courses.id}>
             
                <Col>
-                  <Card style={{ width: '20rem', display: "inline-block" }}>
+                  <Card style={{ width: '20rem', height: '600px', display: "inline-block" }}>
                     <Card.Body style={{fontSize: 20}}>
-                      <Card.Title>{courses.title}</Card.Title>
+                      <Card.Title style={{ width: '20rem', height: '20px', display: "inline-block" }}>{courses.title}</Card.Title>
                       <Card.Img variant="top" src={courses.imagePath} />
-                      <Card.Text>
-                      Price: <b>{courses.price.normal} € </b><br></br>                    
-                      Duration: <b>{courses.duration}</b><br></br> 
-                      Dates: <b>{courses.dates.start_date} - {courses.dates.end_date}</b><br></br> 
+                      <Card.Text style={{ width: '20rem', height: '50%', display: "inline-block" }}>
+                      <br></br>   
+                      Price: <b>{courses.price.normal} € </b><br></br><br></br>                   
+                      Duration: <b>{courses.duration}</b><br></br><br></br>   
+                      Dates: <b>{courses.dates.start_date} - {courses.dates.end_date}</b><br></br>   
                       </Card.Text>
                       <Button color="info" onClick={event =>  window.location.href=(`/courses/${courses.id}`)}>View Details</Button>{' '}
                     </Card.Body>

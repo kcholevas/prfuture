@@ -10,7 +10,7 @@ import {
   Alert,
   Spinner,
 } from "react-bootstrap";
-import { FcCheckmark } from "react-icons/fc";
+import { FcCheckmark, FcCancel } from "react-icons/fc";
 import parse from "html-react-parser";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
@@ -19,6 +19,7 @@ import axios from "axios";
 import DeleteCourse from "./DeleteCourse";
 //import Spinner1 from "./Spinner"
 import { API } from "./api";
+import { render } from "@testing-library/react";
 
 const Course = ({ match }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -46,11 +47,13 @@ const Course = ({ match }) => {
   }, []);
 
   const checkBookable = (props) => {
+    
     if (course.open) {
-      return <FcCheckmark />;
+       return <FcCheckmark /> ; 
     } else {
-      return null;
+      return <FcCancel />;
     }
+  
   };
 
   if (error) {
@@ -101,9 +104,7 @@ const Course = ({ match }) => {
         </Row>
         <Row>
           <Col>
-            <h3 className="left">{`Bookable: ${checkBookable(
-              course.open
-            )}`}</h3>
+            <h3 className="left">Bookable: {checkBookable(course.open)}</h3>
           </Col>
           <Col>
             <h3 className="right">{`Dates: ${DateFormatter(
