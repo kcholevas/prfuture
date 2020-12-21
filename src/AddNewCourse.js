@@ -235,6 +235,7 @@ const AddNewCourse = () => {
               />
             </Form.Group>
           ))}
+
           <hr className="my-2" />
           <h2>Price</h2>
           {[
