@@ -1,29 +1,47 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-//den xreiazetai pleon to db.json 
-import { Table, Button} from 'reactstrap';
+import { Table, Button, Alert, Spinner } from "react-bootstrap";
+import axios from "axios";
 import "./index.css";
+import { API } from "./api";
 
 
 // Table of courses
 // ========================================
  
-function CoursesTable(){
+function CoursesTable() {
+  const [courses, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
+    const fetchData = async () => {
+      setError(false);
+      setIsLoading(true);
+      try {
+        const response = await axios.get(`${API}/courses`);
+        setItems(response.data);
+        setIsLoading(false);
+      } catch {
+        setError(error);
+        setIsLoading(false);
+      }
+    };
 
-        fetchItems();
+    fetchData();
+  }, []);
 
-    },[]);
+  if (error) {
+    return <Alert variant="warning">{error.message}</Alert>;
+  }
 
-    const [courses,setItems] = useState([])
+  if (isLoading) {
+    return <Spinner animation="border" size="lg" />;
+  }
 
-    const fetchItems = async () => {
-      const res = await fetch(`http://localhost:3001/courses`)
-      const courses = await res.json(); //ta kanei fetch apo ton server!
-        console.log(courses);
-        setItems(courses);
-    }
+  const DateFormatter = (date) => {
+    return new Date(date).toLocaleDateString("en-US");
+  };
     return (
         <div>Last 5 courses<Button className="float-right" color="primary" onClick={event =>  window.location.href='/courses'}>View All</Button>{' '}
             <Table class ="d-flex justify-content-center">
@@ -46,7 +64,7 @@ function CoursesTable(){
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.title}</th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}><img className="photo" src={process.env.PUBLIC_URL + '/check.png'} alt="Bookable"/></th>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.price.normal}</th>
-                <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{courses.dates.start_date} {courses.dates.end_date}</th>
+                <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>{`${DateFormatter(courses.dates.start_date)} - ${DateFormatter(courses.dates.end_date)}`}</th>
                 <th><Button color="info" onClick={event =>  window.location.href=(`/courses/${courses.id}`)}>View Details</Button>{' '}</th>
             </tr>
             </tbody>
