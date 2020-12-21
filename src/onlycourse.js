@@ -62,6 +62,24 @@ const Course = ({ match }) => {
   const handleCloseDel = () => setShowDel(false);
   const handleShowDel = () => setShowDel(true);
 
+  /* on Save Button Click*/  
+  const handleSaveChanges = () => {};
+  const handleDeleteCourse = () => {};
+
+  
+  const handleEditBook = () => {};
+  const handleEditInstr = () => {};
+  const handleEdit = () => {};
+  
+  const handleEditDate = () => {};
+  const handleEditPrice = () => {};
+
+  /* On Form Submit */
+  const handleCourseEdit = () => {};
+
+
+  
+
   return (
     <div>
       <Jumbotron fluid className="Jumbotron">
@@ -109,75 +127,63 @@ const Course = ({ match }) => {
         <Button variant="primary" onClick={handleShowEdit}>Edit</Button>{" "}
         <Button variant="danger" onClick={handleShowDel}>Delete</Button>{" "}
 
-        <Modal id="editModal" show={showEd} onHide={handleCloseEdit} backdrop="static" animation={true}>
+        <Modal show={showEd} onHide={handleCloseEdit} backdrop="static" animation={true}>
           <Modal.Header closeButton>
             <Modal.Title>{`Edit Course: ${course1.title}`}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Jumbotron className="editform">
-              <Form>
-                <Form.Group controlId="formCourseTitle">
+              <Form onSubmit={handleCourseEdit}>
+                <Form.Group onChange={handleEdit} controlId="formCourseTitle">
                   <Form.Label>Title</Form.Label>
                   <Form.Control placeholder={course1.title}/>
                 </Form.Group>
 
-                <Form.Group controlId="formCourseDuration">
+                <Form.Group onChange={handleEdit} controlId="formCourseDuration">
                   <Form.Label>Duration</Form.Label>
                   <Form.Control placeholder={course1.duration} />
                 </Form.Group>
 
-                <Form.Group controlId="formCoursePath">
-                  <Form.Check label="formImagePath" />
-                </Form.Group>
-
-                <Form.Group controlId="formCoursePath">
+                <Form.Group onChange={handleEdit} controlId="formCoursePath">
                   <Form.Label>Image path</Form.Label>
-                  <Form.Control placeholder="Image path" />
+                  <Form.Control placeholder={course1.imagePath} />
                 </Form.Group>
 
-                <Form.Check type={`checkbox`} id={`bookable`} label={`Bookable`} />
+                <Form.Check type={`checkbox`} id={`bookable`} label={`Bookable`} onChange={handleEditBook} checked={course1.open} />
 
                 <hr className="my-2" />
                 <h2>Instructors</h2>
 
-                <Form.Check
-                  type={`checkbox`}
-                  id={`instructor1`}
-                  label={`John Tsevdos`}
-                />
-                <Form.Check
-                  type={`checkbox`}
-                  id={`instructor2`}
-                  label={`Yiannis Nikolakopoulos`}
-                />
+{/*                 <Form.Check type="checkbox" label="John Tsevdos" name="01" value="01" onChange={handleEditInstr} checked= {course1.instructors.includes("01")} />
+                <Form.Check type="checkbox" label="Yannis Nikolakopoulos" name="02" value="02" onChange={handleEditInstr} checked={course1.instructors.includes("02")}/> */}
 
                 <hr className="my-2" />
 
-                <Form.Group controlId="formCourseDescription">
+                <Form.Group onChange={handleEdit} controlId="formCourseDescription">
                   <Form.Label>Description</Form.Label>
                   <Form.Control placeholder={course1.description} as="textarea" rows={5} />
                 </Form.Group>
 
                 <hr className="my-2" />
                 <h2>Dates</h2>
-                <Form.Group controlId="formCourseStartDate">
+                <Form.Group onChange={handleEditDate} controlId="formCourseStartDate">
                   <Form.Label>Start date</Form.Label>
                   <Form.Control placeholder={course1.dates} type="date"/>
                 </Form.Group>
 
-                <Form.Group controlId="formCourseEndDate">
+                <Form.Group onChange={handleEditDate} controlId="formCourseEndDate">
                   <Form.Label>End date</Form.Label>
                   <Form.Control type="date" placeholder="End date" />
                 </Form.Group>
 
                 <hr className="my-2" />
                 <h2>Price</h2>
-                <Form.Group controlId="formCourseEarlyBird">
+                <Form.Group onChange={handleEditPrice} controlId="formCourseEarlyBird">
                   <Form.Label>Early Bird</Form.Label>
                   <Form.Control type="number" value={0} />
                 </Form.Group>
 
-                <Form.Group controlId="formCourseNormalPrice">
+                <Form.Group onChange={handleEditPrice} controlId="formCourseNormalPrice">
                   <Form.Label>Normal Price</Form.Label>
                   <Form.Control type="number" value={0} />
                 </Form.Group>
@@ -191,7 +197,7 @@ const Course = ({ match }) => {
             <Button variant="secondary" onClick={handleCloseEdit}>
               Close
           </Button>
-            <Button variant="primary" onClick={handleCloseEdit}>
+            <Button variant="primary" onClick={handleSaveChanges}>
               Save Changes
           </Button>
           </Modal.Footer>
@@ -208,7 +214,7 @@ const Course = ({ match }) => {
             <Button variant="secondary" onClick={handleCloseDel}>
               Close
           </Button>
-            <Button variant="danger" onClick={handleCloseDel}>
+            <Button variant="danger" onClick={handleDeleteCourse}>
               Delete
           </Button>
           </Modal.Footer>
