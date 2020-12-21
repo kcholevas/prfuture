@@ -4,11 +4,11 @@ import { Modal, Button } from "react-bootstrap";
 const DeleteCourse = ({
   showModal,
   toggleModal,
-  deleteContact,
+  deleteCourse,
   courseTitle,
   courseId,
 }) => {
-  console.log(courseId);
+ 
   return (
     <Modal show={showModal} onHide={toggleModal}>
       <Modal.Header closeButton>
@@ -19,7 +19,7 @@ const DeleteCourse = ({
         <Button variant="secondary" onClick={toggleModal}>
           Close
         </Button>
-        <Button variant="primary" onClick={() => deleteContact(courseId)}>
+        <Button variant="primary" onClick={() => deleteCourse(courseId)}>
           Delete
         </Button>
       </Modal.Footer>
