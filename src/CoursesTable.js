@@ -34,7 +34,7 @@ function CoursesTable() {
   }, []);
 
   const checkBookable = (props) => {
-    if (props.children) {
+    if (props) {
       return <FcCheckmark />;
     } else {
       return <FcCancel />;
