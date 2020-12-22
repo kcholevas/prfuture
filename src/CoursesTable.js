@@ -43,8 +43,8 @@ function CoursesTable() {
     return new Date(date).toLocaleDateString("en-US");
   };
     return (
-        <div>Last 5 courses<Button className="float-right" color="primary" onClick={event =>  window.location.href='/courses'}>View All</Button>{' '}
-            <Table className ="d-flex justify-content-center">
+        <div>Last 5 courses
+            <Table>
             <thead>
             <tr>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Title</th>
@@ -70,7 +70,7 @@ function CoursesTable() {
             </tbody>
         </Table>
             </div>
-            })}
+            })}<Button className="float-right" color="primary" onClick={event =>  window.location.href='/courses'}>View All</Button>{' '}
         </div>
 
     );
