@@ -107,7 +107,7 @@ function CoursesTable() {
           </tr>
         </thead>
       </Table>
-      {courses.map(({ id, title, open, price, dates }) => {
+      {courses.reverse().slice(courses, 5).map(({ id, title, open, price, dates }) => {
         return (
           <div key={id}>
             <Table responsive hover>
