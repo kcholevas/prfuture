@@ -39,6 +39,7 @@ function CoursesTable() {
     return <Spinner animation="border" size="lg" />;
   }
 
+
   const DateFormatter = (date) => {
     return new Date(date).toLocaleDateString("en-US");
   };
@@ -56,7 +57,7 @@ function CoursesTable() {
             </thead>
             
             </Table>
-            {courses.map((courses)=> {
+            {courses.slice(courses, 5).map((courses)=> {
             return <div key={courses.id}>
             <Table responsive hover>
             <tbody>
