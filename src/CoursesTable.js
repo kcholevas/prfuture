@@ -44,7 +44,7 @@ function CoursesTable() {
   };
     return (
         <div>Last 5 courses<Button className="float-right" color="primary" onClick={event =>  window.location.href='/courses'}>View All</Button>{' '}
-            <Table class ="d-flex justify-content-center">
+            <Table className ="d-flex justify-content-center">
             <thead>
             <tr>
                 <th style={{ width: "20%", justifyContent: "center", textAlign: "left" }}>Title</th>
