@@ -58,10 +58,10 @@ function Dashboard() {
       return (
         <Card
           key={stats.id}
-          style={{ width: "10rem", display: "inline-block" }}
+          style={{ width: "12rem", display: "inline-block" }}
         >
           <Card.Body>
-            <Card.Title>{stats.title}</Card.Title>
+            <Card.Title>{stats.title.toUpperCase()}</Card.Title>
             <Card.Text>{stats.amount}</Card.Text>
           </Card.Body>
         </Card>
