@@ -111,9 +111,7 @@ const Course = ({ match }) => {
         </Row>
         <Row>
           <Col>
-            <h3 className="left">{`Bookable: ${checkBookable(
-              course.open
-            )}`}</h3>
+          <h3 className="left">Bookable: {checkBookable(course.open)}</h3> 
           </Col>
           <Col>
             <h3 className="right">{`Dates: ${DateFormatter(
