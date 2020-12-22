@@ -133,7 +133,7 @@ const EditModal = ({ showModal, toggleModal, course }) => {
         <Modal.Title>Edit Course : {`${course.title}`}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h2>Add Course</h2>
+        <h2>Course Details</h2>
         {[
           {
             field: "title",
